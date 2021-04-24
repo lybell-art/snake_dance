@@ -14,8 +14,8 @@ class snakeSegment{
 		push();
 		translate(this.pos);
 		let dirs=this.getDir();
-		rotateY(PI/6);
-		rotateX(PI/4);
+		rotateY(PI/3);
+		rotateX(PI/12);
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
