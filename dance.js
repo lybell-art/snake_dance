@@ -51,7 +51,7 @@ class lybellP5Camera{
 		this.pos.y = this.target.y + c*y - d*z;
 		this.pos.z = this.target.z - b*x + a*d*y + b*c*z;
 		
-		apply();
+		this.apply();
 	}
 }
 
