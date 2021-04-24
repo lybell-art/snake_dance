@@ -46,17 +46,14 @@ class lybellP5Camera{
 		let x=this.pos.x-this.target.x;
 		let y=this.pos.y-this.target.y;
 		let z=this.pos.z-this.target.z;
-		console.log("XYZ : ", x, y, z);
-		let a=cos(_x*rad);
-		let b=sin(_x*rad);
-		let c=cos(_y*rad);
-		let d=sin(_y*rad);
-		console.log("ABCD : ", a, b, c, d);
-		console.log("res_X : ", a*x + b*d*y + b*c*z);
-		this.pos.x = this.target.x + a*x + b*d*y + b*c*z;
-		this.pos.y = this.target.y + c*y - d*z;
-		this.pos.z = this.target.z - b*x + a*d*y + b*c*z;
 		
+		let a=sin(_x*rad); let b=cos(_x*rad);
+		let x1=b*x + a*z;
+		let z1=b*z - a*x;
+		
+		this.pos.x=this.target.x + x1;
+		this.pos.y=this.target.y;
+		this.pos.z=this.target.z + z1;
 		this.apply();
 	}
 }
