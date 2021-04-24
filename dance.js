@@ -122,8 +122,8 @@ function draw()
 	let seg=new snakeSegment();
 	seg.render();
 	push();
-	translate(100,100,0);
-	sphere(10);
+	translate(50,50,(height / 2.0) / tan (PI * 30.0 / 180.0) * (-0.5));
+	sphere(1);
 	pop();
 }
 
