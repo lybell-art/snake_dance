@@ -9,19 +9,13 @@ class snakeSegment{
 		this.pos=new p5.Vector(0,0,0);
 		this.dir=new p5.Vector(-90,-30,-40);
 	}
-	getDir()
-	{
-		let xzProj = new p5.Vector(this.dir.x, this.dir.z);
-		let yzProj = new p5.Vector(this.dir.y, this.dir.z);
-		return {theta:xzProj.heading(), phi:yzProj.heading()};
-	}
 	render()
 	{
 		push();
 		translate(this.pos);
 		let dirs=this.getDir();
-		rotateY(-dirs.phi);
-		rotateX(-dirs.theta);
+		rotateY(PI/6);
+		rotateX(PI/4);
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
