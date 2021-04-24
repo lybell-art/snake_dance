@@ -7,7 +7,7 @@ class snakeSegment{
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
-		this.dir=new p5.Vector(-50,-30,-40);
+		this.dir=new p5.Vector(-90,-30,-40);
 	}
 	getDir()
 	{
@@ -20,8 +20,8 @@ class snakeSegment{
 		push();
 		translate(this.pos);
 		let dirs=this.getDir();
-		rotateY(dirs.phi);
-		rotateX(dirs.theta);
+		rotateY(-dirs.phi);
+		rotateX(-dirs.theta);
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
