@@ -20,7 +20,7 @@ class snakeSegment{
 		console.log("dir : ", this.dir);
 		console.log("rotY = ", Math.atan2(this.dir.z, this.dir.x ));
 		console.log("rotX = ", Math.acos(-this.dir.y / this.dir.mag()));
-		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan2(this.dir.z, this.dir.x) );
+		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan(this.dir.x/this.dir.z) );
 		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
