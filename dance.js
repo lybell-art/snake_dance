@@ -61,14 +61,12 @@ class lybellP5Camera{
 		
 		let y1=y*cosY - r*sinY;
 		let z1=y*sinY + r*cosY;
-		if(Math.abs((y-y1) / this.dist) < 0.001) return;
-		console.log(Math.abs((y-y1) / this.dist) < 0.001);
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
 		
 		this.pos.x=this.target.x + sinX*z1;
-		this.pos.y=this.target.y + y1;
+		if(Math.abs((y-y1) / this.dist) >= 0.001) this.pos.y=this.target.y + y1;
 		this.pos.z=this.target.z + cosX*z1;
 		this.apply();
 	}
@@ -83,8 +81,8 @@ class lybellP5Camera{
 	screenTo3D(x, y)
 	{
 		let AxisZ=p5.Vector.sub(this.pos, this.target).normalize();
-		let AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0));
-		let AxisY=p5.Vector.cross(AxisZ, AxisX);
+		let AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
+		let AxisY=p5.Vector.cross(AxisZ, AxisX).normalize();
 		push();
 		stroke("#ff0000");
 		translate(AxisX.mult(10));
