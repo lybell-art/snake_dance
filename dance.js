@@ -15,19 +15,14 @@ class snakeSegment{
 	}
 	render()
 	{
-		/*
 		push();
 		translate(this.pos);
-//		console.log("dir : ", this.dir);
-//		console.log("rotY = ", Math.atan(this.dir.x /this.dir.z));
-		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan( this.dir.x/ this.dir.z ));
-//		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
-//		rotateY(0);
-		rotateX(PI/ 2);
+		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan2 ( -this.dir.x , -this.dir.z ));
+		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
-		*/
+		
 		push();
 		translate(this.dir);
 		sphere(1);
@@ -42,73 +37,6 @@ class snakeSegment{
 		translate(0,0,this.dir.z);
 		sphere(8);
 		pop();
-		
-		push();
-		stroke("#ff3000");
-		translate(100, 0,0);
-		sphere(5);
-		pop();
-		push();
-		stroke("#0030ff");
-		translate(0,0,100);
-		sphere(5);
-		pop();
-		
-		push();
-		stroke("#00adaf");
-		rotateY(0);
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();
-		
-		push();
-		stroke("#00adaf");
-		rotateY(PI/4);
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();
-		
-		push();
-		stroke("#00adaf");
-		rotateY(PI/2);
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();
-		
-		push();
-		stroke("#00adaf");
-		rotateY(PI*0.75);
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();
-		
-		push();
-		stroke("#ad00ff");
-		rotateY(Math.atan( this.dir.x/ this.dir.z ));
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();
-		
-		push();
-		stroke("#adff00");
-		rotateY(Math.atan2( -this.dir.x, -this.dir.z ));
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();
-/*
-		push();
-		stroke("#22ff00");
-		rotateY(Math.atan2( this.dir.x, this.dir.z ) + PI);
-		rotateX(PI/ 2);
-		translate(0,-100,0);
-		cylinder(1, 200);
-		pop();*/
 	}
 }
 
