@@ -21,7 +21,7 @@ class snakeSegment{
 	trace(p)
 	{
 		let target=p.copy();
-		this.dir=p5.Vector.sub(this.target,this.pos);
+		this.dir=p5.Vector.sub(target,this.pos);
 		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
 	render()
@@ -43,14 +43,13 @@ class snakeSystem{
 		this.segments=[];
 		for(var i=0; i<len; i++) this.segments[i]=new snakeSegment();
 		this.segments[len-1].setPosition(0,0,0);
-		this.target = new p5.Vector(0,0,0);
 	}
 	followSegment(pos)
 	{
-		this.target = this.segments[0].trace(pos);
+		let target = this.segments[0].trace(pos);
 		for(var i=1; i<this.length; i++)
 		{
-			this.target = this.segments[i].trace(this.target);
+			target = this.segments[i].trace(target);
 		}
 		for(var i=this.length-1; i>=1; i--)
 		{
