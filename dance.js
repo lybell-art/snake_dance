@@ -71,7 +71,7 @@ function setup()
 }
 function draw()
 {
-	camera(0, -200, 400, 0,0,0);
+	camera(0, -900, 0, 0,0,0);
 	background(255);
 	let seg=new snakeSegment();
 	seg.render();
