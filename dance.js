@@ -61,8 +61,8 @@ class lybellP5Camera{
 		
 		let y1=y*cosY - r*sinY;
 		let z1=y*sinY + r*cosY;
-//		if(z * z1 < 0) return;
-		console.log(y, y1);
+		if(Math.abs((y-y1) / this.dist) < 0.001) return;
+		console.log(Math.abs((y-y1) / this.dist) < 0.001);
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
