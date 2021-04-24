@@ -136,7 +136,7 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
-	seg.render();
+//	seg.render();
 	myCam.screenTo3D(0,0);
 }
 
