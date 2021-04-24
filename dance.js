@@ -121,11 +121,11 @@ function draw()
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
 	seg.render();
-	push();
+/*	push();
 	translate(100,0,100);
 	sphere(10);
 	pop();
-	matrixProj(100, 0, 100);
+	matrixProj(100, 0, 100);*/
 }
 
 
