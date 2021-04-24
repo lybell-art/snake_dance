@@ -29,12 +29,16 @@ class lybellP5Camera{
 	}
 	apply()
 	{
-		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
+//		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
+		push();
+		translate(this.pos.x, this.pos.y, this.pos.z);
+		sphere(20);
+		pop();
 	}
 	initialize()
 	{
 		this.apply();
-		setCamera(this.camera);
+//		setCamera(this.camera);
 	}
 	rotate(_x, _y)
 	{
@@ -60,12 +64,14 @@ function setup()
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
 	myCam=new lybellP5Camera(0, -100, 500, 0,0,0);
-	myCam.initialize();
+//	myCam.initialize();
+	
 	slider = createSlider(-500, 500, 0);
 	slider.position(10, 10);
 }
 function draw()
 {
+	camera(0, -200, 400, 0,0,0);
 	background(255);
 	let seg=new snakeSegment();
 	seg.render();
