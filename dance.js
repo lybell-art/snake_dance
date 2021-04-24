@@ -51,9 +51,13 @@ class lybellP5Camera{
 		let x1=b*x + a*z;
 		let z1=b*z - a*x;
 		
+		let c=sin(_y*rad); let d=cos(_y*rad);
+		let y2=d*y - c*z1;
+		let z2=c*y + d*z1;
+		
 		this.pos.x=this.target.x + x1;
-		this.pos.y=this.target.y;
-		this.pos.z=this.target.z + z1;
+		this.pos.y=this.target.y + y2;
+		this.pos.z=this.target.z + z2;
 		this.apply();
 	}
 }
