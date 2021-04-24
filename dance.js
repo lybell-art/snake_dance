@@ -88,7 +88,6 @@ class lybellP5Camera{
 		let baseO=p5.Vector.add(this.pos, p5.Vector.mult(AxisZ, -baseLen*depth));
 		baseO.add(p5.Vector.mult(AxisX, x*depth));
 		baseO.add(p5.Vector.mult(AxisY, y*depth));
-		console.log(this.pos, baseO);
 		
 		push();
 		stroke("#ff0000");
