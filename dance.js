@@ -17,6 +17,9 @@ class snakeSegment{
 	{
 		push();
 		translate(this.pos);
+		console.log("dir : ", this.dir);
+		console.log("rotY = ", Math.atan(this.dir.x / this.dir.z));
+		console.log("rotX = ", Math.acos(-this.dir.y / this.dir.mag()));
 		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan(this.dir.x / this.dir.z) );
 		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
 		translate(0,-snakeSegment.length / 2.0,0);
