@@ -96,7 +96,15 @@ class snakeSegment{
 		
 		push();
 		stroke("#adff00");
-		rotateY(Math.atan2( this.dir.x, -this.dir.z ));
+		rotateY(Math.atan2( -this.dir.x, this.dir.z ));
+		rotateX(PI/ 2);
+		translate(0,-100,0);
+		cylinder(1, 200);
+		pop();
+		
+		push();
+		stroke("#22ff00");
+		rotateY(Math.atan2( -this.dir.x, this.dir.z ) + PI);
 		rotateX(PI/ 2);
 		translate(0,-100,0);
 		cylinder(1, 200);
