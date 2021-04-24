@@ -14,8 +14,8 @@ class snakeSegment{
 		push();
 		translate(this.pos);
 		this.dir.x=v;
-		rotateY(Math.atan(this.dir.z/this.dir.x));
-		rotateZ(Math.acos(-this.dir.y/this.dir.mag()));
+		rotateY(PI/2);
+		rotateZ(PI/8);
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
