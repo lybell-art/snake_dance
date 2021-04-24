@@ -30,7 +30,7 @@ class snakeSegment{
 	render(head=false)
 	{
 		push();
-		fill(100,147,30);
+//		fill(100,147,30);
 		translate(this.pos);
 		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan2 ( -this.dir.x , -this.dir.z ));
 		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
@@ -159,7 +159,14 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	fill(88,33,14);
-	plane(4000,4000);
+	circle(0,0, 800);
+	lights();
+	shininess(15);
+	ambientLight(85,85,0);
+	pointLight(160, 0, 0, 0, -800, 600);
+	pointLight(240, 240, 0, 300, -800, -300);
+	pointLight(0, 160, 0, -300, -800, -300);
+	specularMaterial(255);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
 	cobra.followSegment(mousePos);
 	cobra.render();
