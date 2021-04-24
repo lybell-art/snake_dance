@@ -130,7 +130,7 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
-	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
+	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,1);
 	seg.trace(mousePos);
 	seg.render(slider.value());
 }
