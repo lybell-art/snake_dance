@@ -59,7 +59,7 @@ function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
-	myCam=new lybellP5Camera();
+	myCam=new lybellP5Camera(0, -100, 500, 0,0,0);
 	myCam.initialize();
 	slider = createSlider(-500, 500, 0);
 	slider.position(10, 10);
