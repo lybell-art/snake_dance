@@ -65,8 +65,9 @@ class lybellP5Camera{
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
 		
+		console.log(Math.abs((y-y1) / this.dist);
 		this.pos.x=this.target.x + sinX*z1;
-		if(Math.abs((y-y1) / this.dist) >= 0.001) this.pos.y=this.target.y + y1;
+		if(Math.abs((y-y1) / this.dist) >= 0.005) this.pos.y=this.target.y + y1;
 		this.pos.z=this.target.z + cosX*z1;
 		this.apply();
 	}
@@ -78,7 +79,7 @@ class lybellP5Camera{
 		this.pos = p5.Vector.add(sub, this.target);
 		this.apply();
 	}
-	screenTo3D(x, y)
+	screenTo3D(x, y, depth=1)
 	{
 		let AxisZ=p5.Vector.sub(this.pos, this.target).normalize();
 		let AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
