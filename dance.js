@@ -61,13 +61,13 @@ class lybellP5Camera{
 		
 		let y1=y*cosY - r*sinY;
 		let z1=r;
-		if(Math.abs((y-y1) / this.dist) >= 0.005) z1=y*sinY + r*cosY;
+		if(Math.abs((y-y1) / this.dist) >= 0.002) z1=y*sinY + r*cosY;
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
 		
 		this.pos.x=this.target.x + sinX*z1;
-		if(Math.abs((y-y1) / this.dist) >= 0.005) this.pos.y=this.target.y + y1;
+		if(Math.abs((y-y1) / this.dist) >= 0.002) this.pos.y=this.target.y + y1;
 		this.pos.z=this.target.z + cosX*z1;
 		this.apply();
 	}
