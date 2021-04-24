@@ -29,20 +29,20 @@ class lybellP5Camera{
 	}
 	apply()
 	{
-//		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
-		push();
-		translate(this.pos.x, this.pos.y, this.pos.z);
-		sphere(4);
-		pop();
+		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
+//		push();
+//		translate(this.pos.x, this.pos.y, this.pos.z);
+//		sphere(4);
+//		pop();
 	}
 	initialize()
 	{
 		this.apply();
-//		setCamera(this.camera);
+		setCamera(this.camera);
 	}
 	rotate(_x, _y)
 	{
-		let rad=PI*3.0/180.0;
+		let rad=PI*1.0/180.0;
 		let x=this.pos.x-this.target.x;
 		let y=this.pos.y-this.target.y;
 		let z=this.pos.z-this.target.z;
@@ -67,7 +67,7 @@ function setup()
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
 	myCam=new lybellP5Camera(0, -100, 500, 0,0,0);
-//	myCam.initialize();
+	myCam.initialize();
 	
 	slider = createSlider(-500, 500, 0);
 	slider.position(10, 10);
