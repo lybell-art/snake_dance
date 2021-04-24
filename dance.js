@@ -19,12 +19,48 @@ class snakeSegment{
 	}
 }
 
+class lybellP5Camera{
+	constructor(eyeX=0, eyeY=0, eyeZ=(1920 / 2.0) / tan (PI * 30.0 / 180.0), targetX=0, targetY=0, targetZ=0)
+	{
+		this.pos=new p5.Vector(eyeX, eyeY, eyeZ);
+		this.target=new p5.Vector(targetX, targetY, targetZ);
+		this.dist=p5.Vector.sub(this.pos, this.target).mag();
+		this.camera=createCamera(eyeX, eyeY, eyeZ, targetX, targetY, targetZ);
+	}
+	apply()
+	{
+		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
+	}
+	initialize()
+	{
+		this.apply();
+		setCamera(this.camera);
+	}
+	rotate(_x, _y)
+	{
+		let rad=PI*1.0/180.0;
+		let x=this.pos.x-this.target.x;
+		let y=this.pos.y-this.target.y;
+		let z=this.pos.z-this.target.z;
+		
+		let a=cos(_x*rad);
+		let b=sin(_x*rad);
+		let c=cos(_y*rad);
+		let d=sin(_y*rad);
+		this.pos.x = this.target.x + a*x + b*d*y + b*c*z;
+		this.pos.y = this.target.y + c*y - d*z;
+		this.pos.z = this.target.z - b*x + a*d*y + b*c*z;
+		
+		apply();
+	}
+}
+
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
-	myCam=createCamera();
-	setCamera(myCam);
+	myCam=new lybellP5Camera();
+	myCam.initialize();
 	slider = createSlider(-500, 500, 0);
 	slider.position(10, 10);
 }
@@ -33,7 +69,7 @@ function draw()
 	background(255);
 	let seg=new snakeSegment();
 	seg.render();
-	myCam.setPosition(0,slider.value(),(height / 2.0) / tan (PI * 30.0 / 180.0));
+	myCam.rotate(1,0);
 }
 
 /*
