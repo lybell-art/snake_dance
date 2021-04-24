@@ -139,7 +139,7 @@ class lybellP5Camera{
 }
 
 function preload() {
-	snakeHeadObj=loadModel('assets/sneakhead.obj');
+	snakeHeadObj=loadModel('assets/snakehead.obj');
 }
 
 function setup()
