@@ -13,7 +13,6 @@ class snakeSegment{
 	{
 		push();
 		translate(this.pos);
-		let dirs=this.getDir();
 		rotateY(PI/3);
 		rotateX(PI/12);
 		translate(0,-snakeSegment.length / 2.0,0);
@@ -37,6 +36,10 @@ class lybellP5Camera{
 	apply()
 	{
 		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
+		push();
+		translate(this.pos);
+		sphere(10);
+		pop();
 	}
 	initialize()
 	{
