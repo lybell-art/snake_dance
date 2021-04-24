@@ -1,8 +1,9 @@
 let myCam;
+let slider;
 
 class snakeSegment{
-	static length=20;
-	static radius=5;
+	static length=40;
+	static radius=10;
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
@@ -24,12 +25,15 @@ function setup()
 	debugMode();
 	myCam=createCamera();
 	setCamera(myCam);
+	slider = createSlider(-500, 500, 0);
+	slider.position(10, 10);
 }
 function draw()
 {
 	background(255);
 	let seg=new snakeSegment();
 	seg.render();
+	myCam.setPosition(0,slider.value(),0);
 }
 
 /*
