@@ -42,7 +42,7 @@ class lybellP5Camera{
 	}
 	rotate(_x, _y)
 	{
-		let rad=PI*10.0/180.0;
+		let rad=PI*3.0/180.0;
 		let x=this.pos.x-this.target.x;
 		let y=this.pos.y-this.target.y;
 		let z=this.pos.z-this.target.z;
