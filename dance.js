@@ -84,7 +84,7 @@ class lybellP5Camera{
 	{
 		let AxisZ=p5.Vector.sub(this.pos, this.target).normalize();
 		let AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0));
-		let AxisY=p5.Vector.cross(AxisZ, AxisY);
+		let AxisY=p5.Vector.cross(AxisZ, AxisX);
 		push();
 		stroke("#ff0000");
 		translate(AxisX.mult(10));
