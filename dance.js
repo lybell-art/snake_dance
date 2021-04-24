@@ -15,7 +15,7 @@ class snakeSegment{
 		push();
 		translate(this.pos);
 		rotateZ(PI/6.0);
-		translate(-snakeSegment.length / 2.0);
+//		translate(-snakeSegment.length / 2.0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
 	}
@@ -32,10 +32,6 @@ class lybellP5Camera{
 	apply()
 	{
 		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
-//		push();
-//		translate(this.pos.x, this.pos.y, this.pos.z);
-//		sphere(4);
-//		pop();
 	}
 	initialize()
 	{
