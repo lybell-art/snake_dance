@@ -65,7 +65,7 @@ class lybellP5Camera{
 		let sub=p5.Vector.sub(this.pos, this.target);
 		this.dist *= pow(1.002,_z);
 		sub.setMag(this.dist);
-		this.pos = po.Vector.add(this.sub, this.target);
+		this.pos = p5.Vector.add(this.sub, this.target);
 	}
 }
 
