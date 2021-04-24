@@ -22,6 +22,7 @@ class snakeSegment{
 	{
 		let target=p.copy();
 		this.dir=p5.Vector.sub(target,this.pos);
+		console.log(this.dir);
 		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
 	render()
