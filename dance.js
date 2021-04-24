@@ -105,7 +105,7 @@ function setup()
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
 //	myCam=new lybellP5Camera(0, -125, 250, 0,0,0);
-	myCam=new lybellP5Camera(0, 0, -500, 0,0,0);
+	myCam=new lybellP5Camera(0, 0, -(height / 2.0) / tan (PI * 30.0 / 180.0), 0,0,0);
 	myCam.initialize();
 	
 	slider = createSlider(-500, 500, 0);
@@ -121,11 +121,10 @@ function draw()
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
 	seg.render();
-/*	push();
-	translate(100,0,100);
+	push();
+	translate(100,100,0);
 	sphere(10);
 	pop();
-	matrixProj(100, 0, 100);*/
 }
 
 
