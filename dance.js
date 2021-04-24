@@ -7,7 +7,7 @@ class snakeSegment{
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
-		this.dir=new p5.Vector(10,10,10);
+		this.dir=new p5.Vector(-10,-20,-10);
 	}
 	getDir()
 	{
