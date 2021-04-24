@@ -22,7 +22,7 @@ class snakeSegment{
 	trace(p)
 	{
 		let target=p.copy();
-		this.dir=p5.Vector.add(p5.Vector.mult(this.dir, -0.5), p5.Vector.sub(target,this.pos).normalize().mult(1.5));
+		this.dir=p5.Vector.add(p5.Vector.mult(this.dir, -0.2), p5.Vector.sub(target,this.pos).normalize().mult(1.2));
 		this.dir.normalize();
 		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
