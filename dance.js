@@ -1,5 +1,5 @@
 let myCam;
-let slider;
+let cobra;
 
 class snakeSegment{
 	static length=50;
@@ -9,9 +9,20 @@ class snakeSegment{
 		this.pos=new p5.Vector(0,0,0);
 		this.dir=new p5.Vector(0,-200,0);
 	}
+	setPosition(x,y,z)
+	{
+		if(arguments.length === 1 && x instanceof p5.Vector) this.pos = x.copy();
+		this.pos=new p5.Vector(x,y,z);
+	}
+	adjustPosition(a)
+	{
+		this.pos.add(p5.Vector.mult(a, snakeSegment.length));
+	}
 	trace(p)
 	{
-		this.dir=p;
+		let target=p.copy();
+		this.dir=p5.Vector.sub(this.target,this.pos);
+		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
 	render()
 	{
@@ -22,6 +33,36 @@ class snakeSegment{
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
+	}
+}
+
+class snakeSystem{
+	constructor(len)
+	{
+		this.length=len;
+		this.segments=[];
+		for(var i=0; i<len; i++) this.segments[i]=new snakeSegment();
+		this.segments[len-1].setPosition(0,0,0);
+		this.target = new p5.Vector(0,0,0);
+	}
+	followSegment(pos)
+	{
+		this.target = this.segments[0].trace(pos);
+		for(var i=1; i<this.length; i++)
+		{
+			this.target = this.segments[i].trace(this.target);
+		}
+		for(var i=this.length-1; i>=1; i--)
+		{
+			this.segments[i-1].adjustPosition(this.segments[i].dir);
+		}
+	}
+	render()
+	{
+		for(var i=0;i<this.length;i++)
+		{
+			this.segments[i].render();
+		}
 	}
 }
 
@@ -96,12 +137,10 @@ function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
-//	myCam=new lybellP5Camera(0, -125, 250, 0,0,0);
-	myCam=new lybellP5Camera(0, 0, -(height / 2.0) / tan (PI * 30.0 / 180.0), 0,0,0);
+	myCam=new lybellP5Camera(0, -125, 250, 0,0,0);
+//	myCam=new lybellP5Camera(0, 0, -(height / 2.0) / tan (PI * 30.0 / 180.0), 0,0,0);
 	myCam.initialize();
-	
-	slider = createSlider(-500, 500, 0);
-	slider.position(10, 10);
+	cobra=new snakeSystem(10);
 }
 function draw()
 {
@@ -111,10 +150,12 @@ function draw()
 	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) myCam.rotate(0,-1); //S
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
-	let seg=new snakeSegment();
+//	let seg=new snakeSegment();
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
-	seg.trace(mousePos);
-	seg.render(slider.value());
+//	seg.trace(mousePos);
+//	seg.render(slider.value());
+	cobra.followSegment(mousePos);
+	cobra.render();
 }
 
 
