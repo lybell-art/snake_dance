@@ -60,6 +60,13 @@ class lybellP5Camera{
 		this.pos.z=this.target.z + z2;
 		this.apply();
 	}
+	zoom(_z)
+	{
+		let sub=p5.Vector.sub(this.pos, this.target);
+		this.dist *= pow(1.002,_z);
+		this.sub.setMag(this.dist);
+		this.pos = po.Vector.add(this.sub, this.target);
+	}
 }
 
 function setup()
@@ -76,43 +83,21 @@ function draw()
 {
 //	camera(0, -400, 0, 0,0,0);
 	background(255);
+	if (keyIsDown(UP_ARROW) || keyIsDown(87) ) myCam.rotate(0,1); //W
+	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) player.move(0,-1); //S
+	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) player.move(-1,0); //A
+	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) player.move(1,0); //D
 	let seg=new snakeSegment();
 	seg.render();
-	myCam.rotate(1,0);
 }
 
-/*
+
 function windowResized()
 {
 	resizeCanvas(windowWidth, windowHeight, false);
-	myCam.setPosition(cameraPos.eyeX,cameraPos.eyeY,cameraPos.eyeZ);
-	myCam.lookAt(cameraPos.centerX,cameraPos.centerY,cameraPos.centerZ);
+	myCam.apply();
 }
 function mouseWheel(event) { //zoom
 	let e = event.delta;
-	myCam.move(0,0, e * 0.1);
-	cameraPos=extractCameraPos(myCam); //for screen size consistency
+	myCam.zoom(e);
 }
-function keyPressed() {
-	switch(keyCode)
-	{
-		case LEFT_ARROW:
-			showPottery.set(-1);
-			break;
-		case RIGHT_ARROW:
-			showPottery.set(1);
-			break;
-		case 90://Z
-			darkMode=!darkMode;
-			break;
-	}
-}
-function extractCameraPos(cam) //for screen size consistency
-{
-	if(cam)
-	{
-		return {eyeX:cam.eyeX, eyeY:cam.eyeY, eyeZ:cam.eyeZ, centerX:cam.centerX, centerY:cam.centerY, centerZ:cam.centerZ};
-	}
-	else return {eyeX:0, eyeY:0, eyeZ:(height/2.0) / tan(PI*30.0 / 180.0), centerX:0, centerY:0, centerZ:0};
-}
-*/
