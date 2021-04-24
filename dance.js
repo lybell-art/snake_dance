@@ -55,7 +55,7 @@ class snakeSystem{
 		}
 		for(var i=this.length-1; i>=1; i--)
 		{
-			this.segments[i-1].adjustPosition(this.segmenets[i]);
+			this.segments[i-1].adjustPosition(this.segments[i]);
 		}
 	}
 	render()
