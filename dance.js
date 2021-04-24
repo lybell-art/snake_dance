@@ -9,13 +9,16 @@ class snakeSegment{
 		this.pos=new p5.Vector(0,0,0);
 		this.dir=new p5.Vector(0,-200,0);
 	}
-	render(v)
+	trace(p)
+	{
+		this.dir=p;
+	}
+	render()
 	{
 		push();
 		translate(this.pos);
-		this.dir.x=v;
-		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan(this.dir.x / this.dir.z) );
-		rotateX( Math.acos(this.dir.y / this.dir.mag()) );
+		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan(-this.dir.x / this.dir.z) );
+		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
@@ -113,8 +116,9 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
+	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
+	seg.trace(mousePos);
 	seg.render(slider.value());
-//	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
 }
 
 
