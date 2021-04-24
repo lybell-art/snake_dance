@@ -7,21 +7,22 @@ class snakeSegment{
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
-		this.dir=new p5.Vector(-90,-30,-40);
+		this.dir=new p5.Vector(0,-200,0);
 	}
 	render(v)
 	{
 		push();
 		translate(this.pos);
-		rotateY(v);
-		rotateX(PI/12);
+		this.dir.x=v;
+		rotateY(Math.atan(this.dir.z/this.dir.x));
+		rotateX(Math.acos(-this.dir.y/this.dir.mag()));
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
-/*		push();
+		push();
 		translate(this.dir);
-		sphere(1);
-		pop();*/
+		sphere(10);
+		pop();
 	}
 }
 
