@@ -84,9 +84,9 @@ function draw()
 //	camera(0, -400, 0, 0,0,0);
 	background(255);
 	if (keyIsDown(UP_ARROW) || keyIsDown(87) ) myCam.rotate(0,1); //W
-	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) player.move(0,-1); //S
-	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) player.move(-1,0); //A
-	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) player.move(1,0); //D
+	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) myCam.rotate(0,-1); //S
+	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
+	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
 	seg.render();
 }
