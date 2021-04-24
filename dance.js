@@ -14,15 +14,15 @@ class snakeSegment{
 		if(arguments.length === 1 && x instanceof p5.Vector) this.pos = x.copy();
 		this.pos=new p5.Vector(x,y,z);
 	}
-	adjustPosition(a)
+	adjustPosition(pre)
 	{
-		this.pos.add(p5.Vector.mult(a, snakeSegment.length));
+		this.pos=pre.pos.copy();
+		this.pos.add(p5.Vector.mult(pre.dir.copy(), snakeSegment.length));
 	}
 	trace(p)
 	{
 		let target=p.copy();
 		this.dir=p5.Vector.sub(target,this.pos).normalize();
-//		console.log(this.dir);
 		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
 	render()
@@ -51,11 +51,11 @@ class snakeSystem{
 		for(var i=1; i<this.length; i++)
 		{
 			target = this.segments[i].trace(target);
-			console.log(target);
+//			console.log(target);
 		}
 		for(var i=this.length-1; i>=1; i--)
 		{
-			this.segments[i-1].adjustPosition(this.segments[i].dir);
+			this.segments[i-1].adjustPosition(this.segmenets[i]);
 		}
 	}
 	render()
