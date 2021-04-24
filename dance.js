@@ -164,7 +164,7 @@ function draw()
 	shininess(15);
 	ambientLight(85,85,0);
 	pointLight(160, 0, 0, 0, -800, 600);
-	pointLight(240, 240, 0, 300, -800, -300);
+//	pointLight(240, 240, 0, 300, -800, -300);
 	pointLight(0, 160, 0, -300, -800, -300);
 	specularMaterial(255);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
