@@ -42,9 +42,11 @@ class snakeSegment{
 		pop();
 		
 		push();
-		stroke("#0088ff");
-		translate(0, 0,20);
-		sphere(5);
+		stroke("#00adaf");
+		rotateY(0);
+		rotateX(PI/ 2);
+		translate(0,-100,0);
+		cylinder(1, 200);
 		pop();
 	}
 }
