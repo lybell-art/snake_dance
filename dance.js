@@ -13,7 +13,7 @@ class snakeSegment{
 	{
 		let xzProj = new p5.Vector(this.dir.x, this.dir.z);
 		let yzProj = new p5.Vector(this.dir.y, this.dir.z);
-		return {theta=xzProj.heading(), phi=yzProj.heading()};
+		return {theta:xzProj.heading(), phi:yzProj.heading()};
 	}
 	render()
 	{
