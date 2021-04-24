@@ -48,6 +48,30 @@ class snakeSegment{
 		translate(0,-100,0);
 		cylinder(1, 200);
 		pop();
+		
+		push();
+		stroke("#00adaf");
+		rotateY(PI/4);
+		rotateX(PI/ 2);
+		translate(0,-100,0);
+		cylinder(1, 200);
+		pop();
+		
+		push();
+		stroke("#00adaf");
+		rotateY(PI/2);
+		rotateX(PI/ 2);
+		translate(0,-100,0);
+		cylinder(1, 200);
+		pop();
+		
+		push();
+		stroke("#00adaf");
+		rotateY(PI*0.75);
+		rotateX(PI/ 2);
+		translate(0,-100,0);
+		cylinder(1, 200);
+		pop();
 	}
 }
 
