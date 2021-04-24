@@ -60,12 +60,12 @@ class lybellP5Camera{
 		let sinX2=sin(_x*rad); let cosX2=cos(_x*rad);
 		
 		let y1=y*cosY - r*sinY;
-		let z1=y*sinY + r*cosY;
+		let z1=z;
+		if(Math.abs((y-y1) / this.dist) >= 0.005) z1=y*sinY + r*cosY;
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
 		
-		console.log(Math.abs((y-y1) / this.dist));
 		this.pos.x=this.target.x + sinX*z1;
 		if(Math.abs((y-y1) / this.dist) >= 0.005) this.pos.y=this.target.y + y1;
 		this.pos.z=this.target.z + cosX*z1;
