@@ -92,24 +92,6 @@ class lybellP5Camera{
 	}
 }
 
-function matrixProj(x, y, z)
-{
-	const camera=myCam.camera;
-	const camMat=camera.cameraMatrix.mat4;
-	const projMat=camera.projMatrix.mat4;
-	let x1=camMat[0]*x + camMat[1]*y + camMat[2]*z + camMat[3];
-	let y1=camMat[4]*x + camMat[5]*y + camMat[6]*z + camMat[7];
-	let z1=camMat[8]*x + camMat[9]*y + camMat[10]*z + camMat[11];
-	let w1=camMat[12]*x + camMat[13]*y + camMat[14]*z + camMat[15];
-	console.log("camMat : ", x1, y1, z1, w1);
-	
-	let x2=projMat[0]*x1 + projMat[1]*y1 + projMat[2]*z1 + projMat[3]*w1;
-	let y2=projMat[4]*x1 + projMat[5]*y1 + projMat[6]*z1 + projMat[7]*w1;
-	let z2=projMat[8]*x1 + projMat[9]*y1 + projMat[10]*z1 + projMat[11]*w1;
-	let w2=projMat[12]*x1 + projMat[13]*y1 + projMat[14]*z1 + projMat[15]*w1;
-	console.log("projMat : ", x2, y2, z2, w2);
-}
-
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
