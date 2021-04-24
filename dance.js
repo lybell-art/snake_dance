@@ -33,7 +33,7 @@ function draw()
 	background(255);
 	let seg=new snakeSegment();
 	seg.render();
-	myCam.setPosition(0,slider.value(),0);
+	myCam.setPosition(0,slider.value(),(height / 2.0) / tan (PI * 30.0 / 180.0));
 }
 
 /*
