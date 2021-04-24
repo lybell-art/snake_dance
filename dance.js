@@ -22,21 +22,6 @@ class snakeSegment{
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
-		
-		push();
-		translate(this.dir);
-		sphere(1);
-		pop();
-		push();
-		stroke("#ff0000");
-		translate(this.dir.x, 0,0);
-		sphere(8);
-		pop();
-		push();
-		stroke("#0000ff");
-		translate(0,0,this.dir.z);
-		sphere(8);
-		pop();
 	}
 }
 
@@ -127,7 +112,7 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
-	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,1);
+	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
 	seg.trace(mousePos);
 	seg.render(slider.value());
 }
