@@ -85,7 +85,7 @@ class lybellP5Camera{
 		const AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
 		const AxisY=p5.Vector.cross(AxisZ, AxisX).normalize();
 		const baseLen=this.camera.defaultEyeZ;
-		let baseO=p5.Vector.add(this.pos, p5.Vector.mult(AxisZ, baseLen*depth));
+		let baseO=p5.Vector.add(this.pos, p5.Vector.mult(AxisZ, -baseLen*depth));
 		baseO.add(p5.Vector.mult(AxisX, x*depth));
 		baseO.add(p5.Vector.mult(AxisY, y*depth));
 		console.log(this.pos, baseO);
