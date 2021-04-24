@@ -2,8 +2,8 @@ let myCam;
 let slider;
 
 class snakeSegment{
-	static length=40;
-	static radius=10;
+	static length=50;
+	static radius=8;
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
