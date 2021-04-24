@@ -32,7 +32,7 @@ class lybellP5Camera{
 //		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
 		push();
 		translate(this.pos.x, this.pos.y, this.pos.z);
-		sphere(20);
+		sphere(4);
 		pop();
 	}
 	initialize()
