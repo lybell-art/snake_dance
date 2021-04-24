@@ -7,7 +7,7 @@ class snakeSegment{
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
-		this.dir=new p5.Vector(0,-200,0);
+		this.dir=new p5.Vector(0,-1,0);
 	}
 	setPosition(x,y,z)
 	{
@@ -22,7 +22,7 @@ class snakeSegment{
 	trace(p)
 	{
 		let target=p.copy();
-		this.dir=p5.Vector.sub(target,this.pos).normalize();
+		this.dir=p5.Vector.add(p5.Vector.mult(this.dir, 0.7), p5.Vector.sub(target,this.pos).normalize().mult(0.3));
 		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
 	render()
