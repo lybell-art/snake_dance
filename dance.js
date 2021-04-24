@@ -66,7 +66,7 @@ class snakeSystem{
 	{
 		for(var i=0;i<this.length;i++)
 		{
-			this.segments[i].render();
+			this.segments[i].render(i == 0);
 		}
 	}
 }
