@@ -40,6 +40,12 @@ class snakeSegment{
 		translate(0,0,this.dir.z);
 		sphere(5);
 		pop();
+		
+		push();
+		stroke("#0088ff");
+		translate(0, 0,20);
+		sphere(5);
+		pop();
 	}
 }
 
