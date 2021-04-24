@@ -1,5 +1,6 @@
 let myCam;
 let cobra;
+let snakeHeadObj;
 
 class snakeSegment{
 	static length=50;
@@ -26,14 +27,16 @@ class snakeSegment{
 		this.dir.normalize();
 		return target.sub(p5.Vector.mult(this.dir, snakeSegment.length)).copy();
 	}
-	render()
+	render(head=false)
 	{
 		push();
+		fill(100,147,30);
 		translate(this.pos);
 		if(this.dir.x != 0 || this.dir.z != 0) rotateY( Math.atan2 ( -this.dir.x , -this.dir.z ));
 		rotateX( Math.acos(-this.dir.y / this.dir.mag()) );
 		translate(0,-snakeSegment.length / 2.0,0);
-		cylinder(snakeSegment.radius, snakeSegment.length);
+		if(head) model(snakeHeadObj);
+		else cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
 	}
 }
@@ -135,27 +138,29 @@ class lybellP5Camera{
 	}
 }
 
+function preload() {
+	snakeHeadObj=loadModel('assets/sneakhead.obj');
+}
+
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
-	debugMode();
 	myCam=new lybellP5Camera(0, -250, 500, 0,0,0);
 //	myCam=new lybellP5Camera(0, 0, -(height / 2.0) / tan (PI * 30.0 / 180.0), 0,0,0);
 	myCam.initialize();
 	cobra=new snakeSystem(10);
+	noStroke();
 }
 function draw()
 {
-//	camera(0, -400, 0, 0,0,0);
-	background(255);
+	background(248,168,17);
 	if (keyIsDown(UP_ARROW) || keyIsDown(87) ) myCam.rotate(0,1); //W
 	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) myCam.rotate(0,-1); //S
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
-//	let seg=new snakeSegment();
+	fill(88,33,14);
+	plane(4000,4000);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
-//	seg.trace(mousePos);
-//	seg.render(slider.value());
 	cobra.followSegment(mousePos);
 	cobra.render();
 }
