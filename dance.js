@@ -139,7 +139,7 @@ function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	debugMode();
-	myCam=new lybellP5Camera(0, -125, 250, 0,0,0);
+	myCam=new lybellP5Camera(0, -250, 500, 0,0,0);
 //	myCam=new lybellP5Camera(0, 0, -(height / 2.0) / tan (PI * 30.0 / 180.0), 0,0,0);
 	myCam.initialize();
 	cobra=new snakeSystem(10);
