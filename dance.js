@@ -122,6 +122,7 @@ function draw()
 	seg.render();
 	push();
 	translate(100,0,100);
+	sphere(10);
 	pop();
 	matrixProj(100, 0, 100);
 }
