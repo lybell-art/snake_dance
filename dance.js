@@ -62,7 +62,7 @@ class lybellP5Camera{
 		let y1=y*cosY - r*sinY;
 		let z1=y*sinY + r*cosY;
 //		if(z * z1 < 0) return;
-		console.log(z, z1);
+		console.log(y, y1);
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
@@ -79,6 +79,22 @@ class lybellP5Camera{
 		sub.setMag(this.dist);
 		this.pos = p5.Vector.add(sub, this.target);
 		this.apply();
+	}
+	screenTo3D(x, y)
+	{
+		let AxisZ=p5.Vector.sub(this.pos, this.target).normalize();
+		let AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0));
+		let AxisY=p5.Vector.cross(AxisZ, AxisY);
+		push();
+		stroke("#ff0000");
+		translate(AxisX.mult(10));
+		sphere(3);
+		pop();
+		push();
+		stroke("#0000ff");
+		translate(AxisY.mult(10));
+		sphere(3);
+		pop();
 	}
 }
 
@@ -121,10 +137,7 @@ function draw()
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
 	seg.render();
-	push();
-	translate(50,50,(height / 2.0) / tan (PI * 30.0 / 180.0) * (-0.5));
-	sphere(1);
-	pop();
+	myCam.screenTo3D(0,0);
 }
 
 
