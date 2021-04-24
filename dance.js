@@ -60,7 +60,7 @@ class lybellP5Camera{
 		let sinX2=sin(_x*rad); let cosX2=cos(_x*rad);
 		
 		let y1=y*cosY - r*sinY;
-		let z1=z;
+		let z1=r;
 		if(Math.abs((y-y1) / this.dist) >= 0.005) z1=y*sinY + r*cosY;
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
@@ -146,7 +146,7 @@ function draw()
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
 //	seg.render();
-	myCam.screenTo3D(100,100);
+	myCam.screenTo3D(1,1);
 }
 
 
