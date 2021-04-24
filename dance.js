@@ -7,7 +7,7 @@ class snakeSegment{
 	constructor()
 	{
 		this.pos=new p5.Vector(0,0,0);
-		this.dir=new p5.Vector(-10,-20,-10);
+		this.dir=new p5.Vector(-50,-30,-40);
 	}
 	getDir()
 	{
@@ -64,7 +64,7 @@ class lybellP5Camera{
 		
 		let y1=y*cosY - r*sinY;
 		let z1=y*sinY + r*cosY;
-		console.log("Z:", z, z1);
+		if(z * z1 < 0) return;
 		
 		let sinX=sinX1 * cosX2 + cosX1 * sinX2;
 		let cosX=cosX1 * cosX2 - sinX1 * sinX2;
