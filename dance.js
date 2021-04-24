@@ -18,10 +18,10 @@ class snakeSegment{
 		translate(0,-snakeSegment.length / 2.0,0);
 		cylinder(snakeSegment.radius, snakeSegment.length);
 		pop();
-		push();
+/*		push();
 		translate(this.dir);
 		sphere(1);
-		pop();
+		pop();*/
 	}
 }
 
@@ -88,22 +88,7 @@ class lybellP5Camera{
 		let baseO=p5.Vector.add(this.pos, p5.Vector.mult(AxisZ, -baseLen*depth));
 		baseO.add(p5.Vector.mult(AxisX, x*depth));
 		baseO.add(p5.Vector.mult(AxisY, y*depth));
-		
-		push();
-		stroke("#ff0000");
-		translate(AxisX.mult(10));
-		sphere(3);
-		pop();
-		push();
-		stroke("#0000ff");
-		translate(AxisY.mult(10));
-		sphere(3);
-		pop();
-		push();
-		stroke("#24adaf");
-		translate(baseO);
-		sphere(3);
-		pop();
+		return baseO;
 	}
 }
 
@@ -145,8 +130,8 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	let seg=new snakeSegment();
-//	seg.render();
-	myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
+	seg.render();
+//	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
 }
 
 
