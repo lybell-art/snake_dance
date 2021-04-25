@@ -197,7 +197,7 @@ function draw()
 	
 	let ampLevel = amp.getLevel() * 0.1 + preAmpLevel*0.9;
 	preAmpLevel = ampLevel;
-	filter.set(mouseIsPressed ? 480 : 22050,100);
+	filter.set(mouseIsPressed ? 480 : 22050,10);
 	
 	lotusTexture.shader(lotusShader);
 	
