@@ -2,6 +2,7 @@ let myCam;
 let cobra, currentFollow;
 let snakeHeadObj;
 let bodyShader, lotusShader, lotusTexture;
+let unter=0;
 let bgm, filter, amp, preAmpLevel, fft;
 
 class snakeSegment{
@@ -181,6 +182,8 @@ function setup()
 	fft=new p5.FFT();
 	bgm.disconnect();
 	bgm.connect(filter);
+	
+	unter=0;
 }
 function draw()
 {
@@ -202,7 +205,7 @@ function draw()
 	lotusTexture.shader(lotusShader);
 	
 	lotusShader.setUniform("uResolution", [lotusTexture.width, lotusTexture.height]);
-	lotusShader.setUniform("uTime", millis() / 1000.0);
+	lotusShader.setUniform("uTime", unter / 1000.0);
 	lotusShader.setUniform("ampLevel", ampLevel);
 
 	lotusTexture.rect(0,0,lotusTexture.width,lotusTexture.height);
@@ -232,6 +235,9 @@ function draw()
 	translate(musicPos);
 	sphere(mouseIsPressed ? 1 : 10);
 	pop();
+	
+	let fr=frameRate();
+	unter+=1/(fr < 1 ? 1 : fr)*(mouseIsPressed ? 0.1 : 1);
 }
 
 
