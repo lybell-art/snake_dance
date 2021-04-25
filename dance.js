@@ -143,7 +143,7 @@ class lybellP5Camera{
 function musicRevolve(frame)
 {
 	let t=frame*PI/360;
-	let r=300*+70*sin(slider1.value()*t);
+	let r=300+70*sin(slider1.value()*t);
 	let angle=t;
 	let yy=-500+80*cos(slider2.value()*t);
 	let xx=r*sin(angle);
