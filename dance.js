@@ -201,8 +201,8 @@ function draw()
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	
 	let follower = mouseIsPressed ? mousePos.copy() : musicPos.copy();
-	currentFollow.mult(0.7);
-	currentFollow.add(follower.mult(0.3));
+	currentFollow.mult(0.95);
+	currentFollow.add(follower.mult(0.05));
 	
 	shader(bodyShader);
 	cobra.followSegment(currentFollow);
