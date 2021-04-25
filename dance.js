@@ -3,7 +3,7 @@ let cobra, currentFollow;
 let snakeHeadObj;
 let bodyShader, lotusShader, lotusTexture;
 let slider1, slider2;
-let bgm, isPlayingBGM, amp, preAmpLevel;
+let bgm, isPlayingBGM,, filter, amp, preAmpLevel;
 
 class snakeSegment{
 	static length=50;
@@ -182,6 +182,9 @@ function setup()
 	bgm.loop();
 	amp=new p5.Amplitude();
 	preAmpLevel=0;
+	filter=new p5.LowPass();
+	bgm.disconnect();
+	bgm.connect(filter);
 }
 function draw()
 {
@@ -193,6 +196,7 @@ function draw()
 	
 	let ampLevel = amp.getLevel() * 0.1 + preAmpLevel*0.9;
 	preAmpLevel = ampLevel;
+	filter.set(mouseIsPressed ? 800 : 22050,15);
 	
 	lotusTexture.shader(lotusShader);
 	
