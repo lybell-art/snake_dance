@@ -1,7 +1,7 @@
 let myCam;
 let cobra, currentFollow;
 let snakeHeadObj;
-let bodyShader;
+let bodyShader, lotusShader, lotusTexture;
 let slider1, slider2;
 
 class snakeSegment{
@@ -155,6 +155,7 @@ function musicRevolve(frame)
 function preload() {
 	snakeHeadObj=loadModel('assets/snakehead.obj');
 	bodyShader=loadShader('shaders/body.vert','shaders/body.frag');
+	lotusShader=loadShader('shaders/lotus.vert','shaders/lotus.frag');
 }
 
 function setup()
@@ -172,6 +173,9 @@ function setup()
 	slider2.position(10,40);
 	
 	currentFollow=new p5.Vector(0,-500,0);
+	
+	lotusTexture = createGraphics(600, 600, WEBGL);
+	lotusTexture.noStroke();
 }
 function draw()
 {
@@ -181,10 +185,18 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	
+	lotusTexture.shader(lotusShader);
+	
+	lotusShader.setUniform("uResolution", [lotusTexture.width, lotusTexture.height]);
+	lotusShader.setUniform("uTime", millis() / 1000.0);
+
+	// passing the shaderTexture layer geometry to render on
+	lotusTexture.rect(0,0,lotusTexture.width,lotusTexture.height);
+	
 	push();
 	rotateX(PI/2);
-	fill(88,33,14);
-	circle(0,0, 600);
+	texture(lotusTexture);
+	plane(600,600);
 	pop();
 	
 /*
