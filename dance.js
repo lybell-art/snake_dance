@@ -174,9 +174,9 @@ function draw()
 	specularMaterial(192);*/
 	ambientLight(50);
 	specularColor(255, 0, 0);
-	directionalLight(255, 0, 0, 0, 0, cos(0));
+	directionalLight(255, 0, 0, 0, 0, 1);
 	specularColor(0, 255, 0);
-	directionalLight(0, 255, 0, sin(PI/3), 0, cos(PI/3));
+	directionalLight(0, 255, 0, 0, 0, -1);
 //	specularColor(255, 255, 0);
 //	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
 	specularMaterial(255);
