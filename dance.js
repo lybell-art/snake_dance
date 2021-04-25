@@ -2,6 +2,7 @@ let myCam;
 let cobra;
 let snakeHeadObj;
 let bodyShader;
+let slider1, slider2;
 
 class snakeSegment{
 	static length=50;
@@ -138,6 +139,18 @@ class lybellP5Camera{
 		return baseO;
 	}
 }
+	
+function musicRevolve(frame)
+{
+	let t=frame*PI/360;
+	let r=300*+70*sin(slider1.value()*t);
+	let angle=t;
+	let yy=-500+80*cos(slider2.value()*t);
+	let xx=r*sin(angle);
+	let zz=r*cos(angle);
+	return new p5.Vector(xx,yy,zz);
+}
+
 
 function preload() {
 	snakeHeadObj=loadModel('assets/snakehead.obj');
@@ -152,6 +165,11 @@ function setup()
 	myCam.initialize();
 	cobra=new snakeSystem(10);
 	noStroke();
+	
+	slider1=createSlider(1,10,1);
+	slider2=createSlider(0,10,1);
+	slider1.position(10,10);
+	slider2.position(10,40);
 }
 function draw()
 {
@@ -181,6 +199,12 @@ function draw()
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	cobra.followSegment(mousePos);
 	cobra.render();
+	
+	let coord=musicRevolve(frameCount);
+	push();
+	translate(coord);
+	sphere(10);
+	pop();
 }
 
 
