@@ -145,7 +145,7 @@ function preload() {
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
-	myCam=new lybellP5Camera(0, -250, 500, 0,0,0);
+	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
 //	myCam=new lybellP5Camera(0, 0, -(height / 2.0) / tan (PI * 30.0 / 180.0), 0,0,0);
 	myCam.initialize();
 	cobra=new snakeSystem(10);
@@ -180,7 +180,7 @@ function draw()
 //	specularColor(255, 255, 0);
 //	pointLight(255, 255, 0, sin(PI*2/3)*100, -300, cos(PI*2/3)*100);
 	specularMaterial(255);
-	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
+	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	cobra.followSegment(mousePos);
 	cobra.render();
 }
