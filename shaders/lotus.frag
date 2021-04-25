@@ -69,8 +69,8 @@ vec4 circles(vec2 uv, float rotation, float d, float r, int cnt, vec4 color)
 
 void main()
 {
-//	vec2 uv = ((gl_FragCoord.xy + 1.0)* 0.5)/uResolution;
-	vec2 uv = gl_FragCoord.xy/uResolution;
+	vec2 uv = ((gl_FragCoord.xy + 1.0)* 0.5)/uResolution;
+//	vec2 uv = gl_FragCoord.xy/uResolution;
 //	uv = (uv - 0.5)*2.0;
 	float fractTime = fract(uTime/2.0);
 	float dist = length(uv);
