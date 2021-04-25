@@ -8,6 +8,11 @@ uniform float uTime;
 
 //out vec4 outColor;
 
+float myround(float a)
+{
+	return floor(a+0.5);
+}
+
 vec4 mandala1(float dist, float angle, float t, vec4 color)
 {
 	float graph = 0.2* (1.0 - abs(sin(t+PI/2.0))*pow(cos(angle*6.0), 8.0));
@@ -53,7 +58,7 @@ vec4 circles(vec2 uv, float rotation, float d, float r, int cnt, vec4 color)
 //	float angle = PI*(-70.0)/180.0;
 	float baseAngle= PI*2.0/cnt_;
 //	float baseAngle = PI*2.0/4.0;
-	float targetAngle=baseAngle*round((angle-rotation)/baseAngle) + rotation;
+	float targetAngle=baseAngle*myRound((angle-rotation)/baseAngle) + rotation;
 	vec2 targetPt = vec2(d*sin(targetAngle), d*cos(targetAngle));
 	float dist = length(targetPt-uv);
 
