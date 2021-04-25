@@ -195,14 +195,16 @@ function draw()
 	specularColor(255, 255, 0);
 	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
 	specularMaterial(255);*/
+	let musicPos=musicRevolve(frameCount);
+	
 	shader(bodyShader);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
-	cobra.followSegment(mousePos);
+	cobra.followSegment(mouseIsPressed ? mousePos : musicPos);
 	cobra.render();
 	resetShader();
-	let coord=musicRevolve(frameCount);
+	
 	push();
-	translate(coord);
+	translate(musicPos);
 	sphere(10);
 	pop();
 }
