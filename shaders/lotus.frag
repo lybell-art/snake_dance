@@ -8,7 +8,7 @@ uniform float uTime;
 
 //out vec4 outColor;
 
-float myround(float a)
+float myRound(float a)
 {
 	return floor(a+0.5);
 }
