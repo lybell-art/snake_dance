@@ -154,7 +154,7 @@ function musicRevolve(frame)
 
 function preload() {
 	snakeHeadObj=loadModel('assets/snakehead.obj');
-	bodyShader=loadShader('body.vert','body.frag');
+	bodyShader=loadShader('shaders/body.vert','shaders/body.frag');
 }
 
 function setup()
