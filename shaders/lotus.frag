@@ -81,7 +81,7 @@ void main()
 	float ampApply = map(ampLevel,0.0,0.5,0.7,1.3);
 	float angle= atan(uv.y, uv.x) * 1.0 + uTime;
 	vec4 black = vec4(0.0,0.0,0.0,1.0);
-	vec4 col1 = mandala1(dist, angle, ampLevel*3, vec4(0.0,0.54,0.57,1.0));
+	vec4 col1 = mandala1(dist, angle, ampLevel*3.0, vec4(0.0,0.54,0.57,1.0));
 	vec4 col2 = mandala2(dist, angle, vec4(0.25,0.1,0.45,1.0));
 	vec4 col3 = mandala3(dist, angle, uTime, vec4(0.8,0.2,0.5,1.0));
 	vec4 col4 = mandala4(dist*ampApply, angle, uTime, vec4(1.0,0.4,0.8,1.0));
