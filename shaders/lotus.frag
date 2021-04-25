@@ -9,6 +9,10 @@ uniform float ampLevel;
 
 //out vec4 outColor;
 
+float myRound(float a)
+{
+	return floor(a+0.5);
+}
 float map(float value, float min1, float max1, float min2, float max2) {
 	return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
 }
