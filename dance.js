@@ -191,7 +191,7 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	
-	let ampLevel = amplitude.getLevel() * 0.2 + preAmpLevel*0.8;
+	let ampLevel = amp.getLevel() * 0.2 + preAmpLevel*0.8;
 	preAmpLevel = ampLevel;
 	
 	lotusTexture.shader(lotusShader);
