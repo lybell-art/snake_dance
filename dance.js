@@ -196,7 +196,7 @@ function draw()
 	preAmpLevel = ampLevel;
 	filter.set(mouseIsPressed ? 480 : 22050,10);
 	let baseEnergy=Math.ceil(fft.getEnergy("bass")/25);
-	let meloEnergy=Math.floor((fft.getEnergy("lowmid")+fft.getEnergy("mid"))/25);
+	let meloEnergy=Math.floor((fft.getEnergy("lowMid")+fft.getEnergy("mid"))/25);
 	
 	//make video of floor
 	lotusTexture.shader(lotusShader);
