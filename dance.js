@@ -178,7 +178,7 @@ function draw()
 	specularColor(0, 255, 0);
 	directionalLight(0, 255, 0, sin(PI/3), 0, cos(PI/3));
 	specularColor(255, 255, 0);
-	directionalLight(255, 255, 0, sin(PI*2/3), 0, cos(PI*2/3));
+	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
 	specularMaterial(255);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	cobra.followSegment(mousePos);
