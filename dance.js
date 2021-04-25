@@ -161,12 +161,20 @@ function draw()
 	fill(88,33,14);
 	circle(0,0, 800);
 	lights();
-	shininess(15);
+/*	shininess(15);
 	ambientLight(85,85,0);
 	directionalLight(240, 0, 0, 6, 1, 0);
 //	pointLight(240, 240, 0, 300, -800, -300);
 	directionalLight(0, 240, 0, -6, 1, 0);
-	specularMaterial(192);
+	specularMaterial(192);*/
+	ambientLight(50);
+	specularColor(255, 0, 0);
+	pointLight(255, 0, 0, 0, -300, cos(0)*100);
+	specularColor(0, 255, 0);
+	pointLight(0, 255, 0, sin(PI/3)*100, -300, cos(PI/3)*100);
+	specularColor(255, 255, 0);
+	pointLight(255, 255, 0, sin(PI*2/3)*100, -300, cos(PI*2/3)*100);
+	specularMaterial(255);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
 	cobra.followSegment(mousePos);
 	cobra.render();
