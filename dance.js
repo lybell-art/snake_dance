@@ -2,8 +2,7 @@ let myCam;
 let cobra, currentFollow;
 let snakeHeadObj;
 let bodyShader, lotusShader, lotusTexture;
-let slider1, slider2;
-let bgm, isPlayingBGM, filter, amp, preAmpLevel;
+let bgm, filter, amp, preAmpLevel, fft;
 
 class snakeSegment{
 	static length=50;
@@ -141,12 +140,12 @@ class lybellP5Camera{
 	}
 }
 	
-function musicRevolve(frame, amplitude)
+function musicRevolve(frame, amplitude, base, melo)
 {
 	let t=frame*PI/360;
-	let r=150+400*amplitude+75*sin(slider1.value()*t);
+	let r=150+400*amplitude+75*sin(base*t);
 	let angle=t;
-	let yy=-350+80*cos(slider2.value()*t);
+	let yy=-350+80*cos(melo*t);
 	let xx=r*sin(angle);
 	let zz=r*cos(angle);
 	return new p5.Vector(xx,yy,zz);
@@ -170,11 +169,6 @@ function setup()
 	cobra=new snakeSystem(10);
 	noStroke();
 	
-	slider1=createSlider(1,10,1);
-	slider2=createSlider(0,10,1);
-	slider1.position(10,10);
-	slider2.position(10,40);
-	
 	currentFollow=new p5.Vector(0,-500,0);
 	
 	lotusTexture = createGraphics(600, 600, WEBGL);
@@ -184,53 +178,51 @@ function setup()
 	amp=new p5.Amplitude();
 	preAmpLevel=0;
 	filter=new p5.LowPass();
+	fft=new p5.FFT();
 	bgm.disconnect();
 	bgm.connect(filter);
 }
 function draw()
 {
 	background(248,168,17);
+	//control
 	if (keyIsDown(UP_ARROW) || keyIsDown(87) ) myCam.rotate(0,1); //W
 	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) myCam.rotate(0,-1); //S
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	
+	//sound visualization
 	let ampLevel = amp.getLevel() * 0.1 + preAmpLevel*0.9;
 	preAmpLevel = ampLevel;
 	filter.set(mouseIsPressed ? 480 : 22050,10);
+	let baseEnergy=Math.ceil(fft.getEnergy("bass")/25);
+	let meloEnergy=Math.floor((fft.getEnergy("lowmid")+fft.getEnergy("mid"))/25);
 	
+	//make video of floor
 	lotusTexture.shader(lotusShader);
 	
 	lotusShader.setUniform("uResolution", [lotusTexture.width, lotusTexture.height]);
 	lotusShader.setUniform("uTime", millis() / 1000.0);
 	lotusShader.setUniform("ampLevel", ampLevel);
 
-	// passing the shaderTexture layer geometry to render on
 	lotusTexture.rect(0,0,lotusTexture.width,lotusTexture.height);
 	
+	//draw floor
 	push();
 	rotateX(PI/2);
 	texture(lotusTexture);
 	plane(600,600);
 	pop();
 	
-/*
-	ambientLight(40);
-	ambientMaterial(150);
-	specularColor(255, 0, 0);
-	directionalLight(255, 0, 0, 0, 0, 1);
-	specularColor(0, 255, 0);
-	directionalLight(0, 255, 0, sin(PI/3), 0, cos(PI/3));
-	specularColor(255, 255, 0);
-	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
-	specularMaterial(255);*/
-	let musicPos=musicRevolve(frameCount, ampLevel);
+	//calculate the position where the snake will follow
+	let musicPos=musicRevolve(frameCount, ampLevel, baseEnergy, meloEnergy);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	
 	let follower = mouseIsPressed ? mousePos.copy() : musicPos.copy();
 	currentFollow.mult(0.95);
 	currentFollow.add(follower.mult(0.05));
 	
+	//draw snake
 	shader(bodyShader);
 	cobra.followSegment(currentFollow);
 	cobra.render();
@@ -238,7 +230,7 @@ function draw()
 	
 	push();
 	translate(musicPos);
-	sphere(10);
+	sphere(mouseIsPressed ? 1 : 10);
 	pop();
 }
 
