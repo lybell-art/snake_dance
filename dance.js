@@ -172,7 +172,8 @@ function draw()
 //	pointLight(240, 240, 0, 300, -800, -300);
 	directionalLight(0, 240, 0, -6, 1, 0);
 	specularMaterial(192);*/
-	ambientLight(160);
+	ambientLight(40);
+	ambientMaterial(150);
 	specularColor(255, 0, 0);
 	directionalLight(255, 0, 0, 0, 0, 1);
 	specularColor(0, 255, 0);
