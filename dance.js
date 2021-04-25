@@ -199,7 +199,7 @@ function draw()
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	cobra.followSegment(mousePos);
 	cobra.render();
-	
+	resetShader();
 	let coord=musicRevolve(frameCount);
 	push();
 	translate(coord);
