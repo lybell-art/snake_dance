@@ -5,12 +5,12 @@ precision mediump float;
 
 uniform vec2 uResolution;
 uniform float uTime;
+uniform float ampLevel;
 
 //out vec4 outColor;
 
-float myRound(float a)
-{
-	return floor(a+0.5);
+float map(float value, float min1, float max1, float min2, float max2) {
+	return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
 }
 
 vec4 mandala1(float dist, float angle, float t, vec4 color)
@@ -73,7 +73,7 @@ void main()
 //	vec2 uv = gl_FragCoord.xy/uResolution;
 	uv = (uv - 0.5)*2.0;
 	float fractTime = fract(uTime/2.0);
-	float dist = length(uv);
+	float dist = length(uv)*map(ampLevel,0.0,1.0,0.7,1.3);
 	float angle= atan(uv.y, uv.x) * 1.0 + uTime;
 	vec4 black = vec4(0.0,0.0,0.0,1.0);
 	vec4 col1 = mandala1(dist, angle, uTime, vec4(0.0,0.54,0.57,1.0));
