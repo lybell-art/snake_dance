@@ -165,7 +165,7 @@ function draw()
 	circle(0,0, 600);
 	pop();
 	
-	lights();
+//	lights();
 /*	shininess(15);
 	ambientLight(85,85,0);
 	directionalLight(240, 0, 0, 6, 1, 0);
