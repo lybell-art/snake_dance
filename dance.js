@@ -205,7 +205,7 @@ function draw()
 	lotusTexture.shader(lotusShader);
 	
 	lotusShader.setUniform("uResolution", [lotusTexture.width, lotusTexture.height]);
-	lotusShader.setUniform("uTime", unter / 1000.0);
+	lotusShader.setUniform("uTime", unter);
 	lotusShader.setUniform("ampLevel", ampLevel);
 
 	lotusTexture.rect(0,0,lotusTexture.width,lotusTexture.height);
