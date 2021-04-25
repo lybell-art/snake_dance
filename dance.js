@@ -143,7 +143,7 @@ class lybellP5Camera{
 	
 function musicRevolve(frame, amplitude, base, melo)
 {
-	let t=frame*PI/360;
+	let t=frame*PI/360 * 45;
 	let r=150+400*amplitude+75*sin(base*t);
 	let angle=t;
 	let yy=-350+80*cos(melo*t);
@@ -218,7 +218,7 @@ function draw()
 	pop();
 	
 	//calculate the position where the snake will follow
-	let musicPos=musicRevolve(frameCount, ampLevel, baseEnergy, meloEnergy);
+	let musicPos=musicRevolve(unter, ampLevel, baseEnergy, meloEnergy);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	
 	let follower = mouseIsPressed ? mousePos.copy() : musicPos.copy();
