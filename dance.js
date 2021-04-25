@@ -3,7 +3,7 @@ let cobra, currentFollow;
 let snakeHeadObj;
 let bodyShader, lotusShader, lotusTexture;
 let slider1, slider2;
-let bgm, isPlayingBGM;
+let bgm, isPlayingBGM, amp, preAmpLevel;
 
 class snakeSegment{
 	static length=50;
@@ -141,10 +141,10 @@ class lybellP5Camera{
 	}
 }
 	
-function musicRevolve(frame)
+function musicRevolve(frame, amplitude)
 {
 	let t=frame*PI/360;
-	let r=250+75*sin(slider1.value()*t);
+	let r=150+200*amplitude+75*sin(slider1.value()*t);
 	let angle=t;
 	let yy=-350+80*cos(slider2.value()*t);
 	let xx=r*sin(angle);
@@ -180,6 +180,8 @@ function setup()
 	lotusTexture.noStroke();
 	userStartAudio();
 	bgm.loop();
+	amp=new p5.Amplitude();
+	preAmpLevel=0;
 }
 function draw()
 {
@@ -189,10 +191,14 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	
+	let ampLevel = amplitude.getLevel() * 0.2 + preAmpLevel*0.8;
+	preAmpLevel = ampLevel;
+	
 	lotusTexture.shader(lotusShader);
 	
 	lotusShader.setUniform("uResolution", [lotusTexture.width, lotusTexture.height]);
 	lotusShader.setUniform("uTime", millis() / 1000.0);
+	lotusShader.setUniform("ampLevel", ampLevel);
 
 	// passing the shaderTexture layer geometry to render on
 	lotusTexture.rect(0,0,lotusTexture.width,lotusTexture.height);
@@ -213,7 +219,7 @@ function draw()
 	specularColor(255, 255, 0);
 	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
 	specularMaterial(255);*/
-	let musicPos=musicRevolve(frameCount);
+	let musicPos=musicRevolve(frameCount, ampLevel);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	
 	let follower = mouseIsPressed ? mousePos.copy() : musicPos.copy();
