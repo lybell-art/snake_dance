@@ -163,9 +163,9 @@ function draw()
 	lights();
 	shininess(15);
 	ambientLight(85,85,0);
-	spotLight(160, 0, 0, 0, -800, 600, 0, 8, -6);
+	directionalLight(160, 0, 0, 0, 1, -6);
 //	pointLight(240, 240, 0, 300, -800, -300);
-	spotLight(0, 160, 0, -300, -800, -300, 3, 8, 3);
+	directionalLight(0, 160, 0, 3, 1, 3);
 	specularMaterial(255);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.2);
 	cobra.followSegment(mousePos);
