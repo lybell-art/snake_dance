@@ -162,7 +162,7 @@ function draw()
 	push();
 	rotateX(PI/2);
 	fill(88,33,14);
-	circle(0,0, 800);
+	circle(0,0, 600);
 	pop();
 	
 	lights();
