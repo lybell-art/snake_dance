@@ -3,6 +3,7 @@ let cobra, currentFollow;
 let snakeHeadObj;
 let bodyShader, lotusShader, lotusTexture;
 let slider1, slider2;
+let bgm, isPlayingBGM;
 
 class snakeSegment{
 	static length=50;
@@ -154,6 +155,7 @@ function musicRevolve(frame)
 
 function preload() {
 	snakeHeadObj=loadModel('assets/snakehead.obj');
+	bgm=loadSound('assets/Artificial_Music_ASHUTOSH_Ethereal Dream.mp3');
 	bodyShader=loadShader('shaders/body.vert','shaders/body.frag');
 	lotusShader=loadShader('shaders/lotus.vert','shaders/lotus.frag');
 }
@@ -176,6 +178,8 @@ function setup()
 	
 	lotusTexture = createGraphics(600, 600, WEBGL);
 	lotusTexture.noStroke();
+	userStartAudio();
+	bgm.loop();
 }
 function draw()
 {
