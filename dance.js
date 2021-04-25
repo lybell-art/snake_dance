@@ -194,7 +194,7 @@ function draw()
 	//sound visualization
 	let ampLevel = amp.getLevel() * 0.1 + preAmpLevel*0.9;
 	preAmpLevel = ampLevel;
-	filter.set(mouseIsPressed ? 480 : 22050,10);
+	filter.set(mouseIsPressed ? 480 : 22050,8);
 	let baseEnergy=Math.ceil(fft.getEnergy("bass")/25);
 	let meloEnergy=Math.floor((fft.getEnergy("lowMid")+fft.getEnergy("mid"))/25);
 	
