@@ -1,5 +1,5 @@
 let myCam;
-let cobra;
+let cobra, currentFollow;
 let snakeHeadObj;
 let bodyShader;
 let slider1, slider2;
@@ -170,6 +170,8 @@ function setup()
 	slider2=createSlider(0,10,1);
 	slider1.position(10,10);
 	slider2.position(10,40);
+	
+	currentFollow=new p5.Vector(0,-500,0);
 }
 function draw()
 {
@@ -196,10 +198,14 @@ function draw()
 	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
 	specularMaterial(255);*/
 	let musicPos=musicRevolve(frameCount);
+	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
+	
+	let follower = mouseIsPressed ? mousePos.copy() : musicPos.copy();
+	currentFollow.mult(0.7);
+	currentFollow.add(follower.mult(0.3));
 	
 	shader(bodyShader);
-	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
-	cobra.followSegment(mouseIsPressed ? mousePos : musicPos);
+	cobra.followSegment(currentFollow);
 	cobra.render();
 	resetShader();
 	
