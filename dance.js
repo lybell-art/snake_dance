@@ -1,6 +1,7 @@
 let myCam;
 let cobra;
 let snakeHeadObj;
+let bodyShader;
 
 class snakeSegment{
 	static length=50;
@@ -140,6 +141,7 @@ class lybellP5Camera{
 
 function preload() {
 	snakeHeadObj=loadModel('assets/snakehead.obj');
+	bodyShader=loadShader('body.vert','body.frag');
 }
 
 function setup()
@@ -165,13 +167,7 @@ function draw()
 	circle(0,0, 600);
 	pop();
 	
-//	lights();
-/*	shininess(15);
-	ambientLight(85,85,0);
-	directionalLight(240, 0, 0, 6, 1, 0);
-//	pointLight(240, 240, 0, 300, -800, -300);
-	directionalLight(0, 240, 0, -6, 1, 0);
-	specularMaterial(192);*/
+/*
 	ambientLight(40);
 	ambientMaterial(150);
 	specularColor(255, 0, 0);
@@ -180,7 +176,8 @@ function draw()
 	directionalLight(0, 255, 0, sin(PI/3), 0, cos(PI/3));
 	specularColor(255, 255, 0);
 	directionalLight(128, 128, 0, sin(PI*2/3), 0, cos(PI*2/3));
-	specularMaterial(255);
+	specularMaterial(255);*/
+	shader(bodyShader);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.4);
 	cobra.followSegment(mousePos);
 	cobra.render();
