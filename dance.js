@@ -158,8 +158,13 @@ function draw()
 	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) myCam.rotate(0,-1); //S
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
+	
+	push();
+	rotateX(PI/2);
 	fill(88,33,14);
 	circle(0,0, 800);
+	pop();
+	
 	lights();
 /*	shininess(15);
 	ambientLight(85,85,0);
