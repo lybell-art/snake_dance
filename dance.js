@@ -144,7 +144,7 @@ class lybellP5Camera{
 function musicRevolve(frame, amplitude)
 {
 	let t=frame*PI/360;
-	let r=150+200*amplitude+75*sin(slider1.value()*t);
+	let r=150+400*amplitude+75*sin(slider1.value()*t);
 	let angle=t;
 	let yy=-350+80*cos(slider2.value()*t);
 	let xx=r*sin(angle);
@@ -191,7 +191,7 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D
 	
-	let ampLevel = amp.getLevel() * 0.2 + preAmpLevel*0.8;
+	let ampLevel = amp.getLevel() * 0.1 + preAmpLevel*0.9;
 	preAmpLevel = ampLevel;
 	
 	lotusTexture.shader(lotusShader);
