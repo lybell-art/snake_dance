@@ -71,7 +71,7 @@ void main()
 {
 //	vec2 uv = ((gl_FragCoord.xy + 1.0)* 0.5)/uResolution;
 	vec2 uv = gl_FragCoord.xy/uResolution;
-	uv = (uv - 0.5)*2.0;
+//	uv = (uv - 0.5)*2.0;
 	float fractTime = fract(uTime/2.0);
 	float dist = length(uv);
 	float angle= atan(uv.y, uv.x) * 1.0 + uTime;
