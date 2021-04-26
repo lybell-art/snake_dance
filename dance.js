@@ -85,10 +85,6 @@ class lybellP5Camera{
 	apply()
 	{
 		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
-		push();
-		translate(this.pos);
-		sphere(10);
-		pop();
 	}
 	initialize()
 	{
